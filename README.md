@@ -2,7 +2,9 @@
 
 A variant of [RxJS exhaustMap](https://rxjs.dev/api/operators/exhaustMap) that includes trailing emissions from the source observable.
 
-Just like the [`exhaustMap()`](https://rxjs.dev/api/operators/exhaustMap) RxJS operator, `exhaustMapWithTrailing()` will ignore all emissions from source observable as long as the projected observable is pending, but in addition it will include the last emission received from the source observable received before the projected observable completed. Think of it as a combination of [`exhaustMap()`](https://rxjs.dev/api/operators/exhaustMap) and [`debounce()`](https://rxjs.dev/api/operators/debounce).
+![Marble Diagram](./marbles.svg)
+
+Just like the [`exhaustMap()`](https://rxjs.dev/api/operators/exhaustMap) RxJS operator, `exhaustMapWithTrailing()` will ignore all emissions from source observable as long as the projected observable is pending, but in addition it will include the last emission received from the source observable before the projected observable completed. Think of it as a combination of [`exhaustMap()`](https://rxjs.dev/api/operators/exhaustMap) and [`debounce()`](https://rxjs.dev/api/operators/debounce).
 
 ## Usage
 
