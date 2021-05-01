@@ -71,7 +71,7 @@
     <g id="source_36cd38f49b9afa08222c0dc9ebfe35eb" transform="rotate(0 0.0 30) translate(0.0,30)">
   <path 
      style="fill:none;fill-rule:evenodd;stroke:#003080;stroke-width:2px;marker-end:url(#Arrow1Lend)"
-     d="m 0,0 547.0,0"
+     d="m 0,0 347.0,0"
      inkscape:connector-curvature="0" />
 
 <g style="filter:url(#filter3443)">
@@ -127,10 +127,10 @@
 </g>
 
 <g>
-   <path d="m 475.0,-12 0,24"
+   <path d="m 275.0,-12 0,24"
        style="fill:none;fill-rule:evenodd;stroke:#003080;stroke-width:4px;" />
 </g>
-</g><g transform="translate(0 90.0)">
+</g><g transform="translate(0 90.00000000000001)">
 <g style="filter:url(#filter3443)">
   <rect
      x="2"
