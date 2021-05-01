@@ -35,11 +35,11 @@ describe("exhaustMapWithTrailing()", () => {
     })
   })
 
-  it("does not emit trailing values after source has completed", () => {
+  it("emits trailing values after source has completed", () => {
     runTest(({cold, expectObservable}) => {
       const [input, expected] = marble`
       ab|
-      ----(a|)
+      ----a---(b|)
     `
 
       const result = cold(input).pipe(
