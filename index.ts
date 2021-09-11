@@ -30,7 +30,9 @@ export function exhaustMapWithTrailing<T, R>(
         exhaustMap((value, index) =>
           from(project(value, index)).pipe(
             finalize(() => {
-              release.next()
+              Promise.resolve().then(()=>{
+                release.next()
+              })
             })
           )
         )
