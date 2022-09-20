@@ -12,9 +12,8 @@ import {exhaustMap, finalize, throttle} from "rxjs/operators"
  * Like exhaustMap, but also includes the trailing value emitted from the source observable while waiting for the preceding inner observable to complete
  *
  * Original code adapted from https://github.com/ReactiveX/rxjs/issues/5004
- * @param {function(value: T, ?index: number): ObservableInput} project A function
- * that, when applied to an item emitted by the source Observable, returns an
- * Observable.
+ * @param {function<T, K>(value: T, ?index: number): ObservableInput<K>} project - A function that, when applied to an item emitted by the
+ * source Observable, returns a projected Observable.
  */
 export function exhaustMapWithTrailing<T, R>(
   project: (value: T, index: number) => ObservableInput<R>
