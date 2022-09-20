@@ -1,9 +1,10 @@
 import {
+  asapScheduler,
   defer,
-  from,
   Observable,
   ObservableInput,
   OperatorFunction,
+  scheduled,
   Subject,
 } from "rxjs"
 import {exhaustMap, finalize, throttle} from "rxjs/operators"
@@ -27,7 +28,7 @@ export function exhaustMapWithTrailing<T, R>(
           trailing: true,
         }),
         exhaustMap((value, index) =>
-          from(project(value, index)).pipe(
+          scheduled(project(value, index), asapScheduler).pipe(
             finalize(() => {
               release.next()
             })

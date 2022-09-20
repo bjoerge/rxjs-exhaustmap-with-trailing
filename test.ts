@@ -1,7 +1,7 @@
 import {TestScheduler} from "rxjs/testing"
-import {delay} from "rxjs/operators"
-import {exhaustMapWithTrailing, exhaustMapToWithTrailing} from "./"
-import {of} from "rxjs"
+import {delay, mapTo, toArray} from "rxjs/operators"
+import {exhaustMapToWithTrailing, exhaustMapWithTrailing} from "./index"
+import {concat, EMPTY, of, timer} from "rxjs"
 import {RunHelpers} from "rxjs/internal/testing/TestScheduler"
 
 describe("exhaustMapWithTrailing()", () => {
@@ -139,6 +139,22 @@ describe("exhaustMapToWithTrailing()", () => {
       expectObservable(result).toBe(expected)
     })
   })
+})
+
+it("sync projected values", async () => {
+  const values = concat(
+    timer(5).pipe(mapTo("async")),
+    timer(10).pipe(mapTo("sync")),
+    timer(10).pipe(mapTo("empty")),
+    timer(15).pipe(mapTo("async"))
+  ).pipe(
+    exhaustMapWithTrailing((x) =>
+      x === "empty" ? EMPTY : x === "sync" ? of(x) : timer(1).pipe(mapTo(x))
+    ),
+    toArray(),
+  )
+
+  expect(await values.toPromise()).toEqual(["async", "sync", "async"])
 })
 
 function runTest(callback: (helpers: RunHelpers) => void) {
