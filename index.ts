@@ -1,5 +1,5 @@
 import {
-  asapScheduler,
+  asyncScheduler,
   defer,
   Observable,
   ObservableInput,
@@ -28,7 +28,7 @@ export function exhaustMapWithTrailing<T, R>(
           trailing: true,
         }),
         exhaustMap((value, index) =>
-          scheduled(project(value, index), asapScheduler).pipe(
+          scheduled(project(value, index), asyncScheduler).pipe(
             finalize(() => {
               release.next()
             })
